@@ -22,6 +22,7 @@ services:
       FLASK_APP: server
       FLASK_DEBUG: 1
     command: /app/.packages/bin/flask run --host=0.0.0.0
+    # command: python setup.py test
   # pip:
   #   image: python:3
   #   working_dir: /app
@@ -30,3 +31,11 @@ services:
   #   environment:
   #     PYTHONUSERBASE: /app/.packages
   #   command: pip install --user --upgrade --editable .
+  react:
+    image: node:6
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - '8080:8080'
+    command: npm run dev
